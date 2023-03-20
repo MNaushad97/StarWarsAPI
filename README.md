@@ -17,7 +17,7 @@ For instance for the character "Han Solo", the detail view should display the fo
 > **Species:** Human  
 > **Movies:** Episode IV, Episode V, Episode VI, Episode VII  
 > **Spaceships:** Millenium Falcon, Imperial shuttle  
-Feel free to come up with your own design for this view!
+
 
 
 ### Filter
