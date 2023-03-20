@@ -3,34 +3,80 @@ import CharacterCard from "./CharacterCard";
 import Details from "./Details";
 
 const movieList = {};
+const speciesList = {};
+const starships = {};
 
 function AvailableCharacters({ characterList }) {
-  const [characterMovies, setCharacterMovies] = useState([]);
-  const [characterName, setCharacterName] = useState("");
+  const [characterData, setCharacterData] = useState({
+    name: "",
+    movies: [],
+    species: [],
+    spaceships: [],
+  });
 
   const fetchMovies = (movies) => {
     let list = [];
-    movies.forEach(async (m) => {
+    movies.forEach((m) => {
       if (movieList[m]) {
         list.push(movieList[m]);
       } else {
-        console.log("fetching");
-        await fetch(m)
+        fetch(m)
           .then((res) => res.json())
           .then((d) => {
-            movieList[m] = d.title;
             list.push(d.title);
+            movieList[m] = d.title;
           });
       }
     });
 
-    setCharacterMovies(list);
+    setCharacterData({ ...characterData, ...(characterData.movies = list) });
   };
+
+  const fetchDataOf = (data, isSpecies = false) => {
+    let list = [];
+    data.forEach((m) => {
+      let check = isSpecies ? speciesList[m] : starships[m];
+      if (check) {
+        list.push(check);
+      } else {
+        fetch(m)
+          .then((res) => res.json())
+          .then((d) => {
+            list.push(d.name);
+
+            isSpecies ? (speciesList[m] = d.name) : (starships[m] = d.name);
+          });
+      }
+    });
+
+    isSpecies
+      ? setCharacterData({
+          ...characterData,
+          ...(characterData.species = list),
+        })
+      : setCharacterData({
+          ...characterData,
+          ...(characterData.spaceships = list),
+        });
+  };
+
+  useEffect(() => {
+    console.log("characterData", characterData);
+  }, [characterData]);
 
   const showDetails = (id) => {
     let character = characterList[id];
     fetchMovies(character.Movie);
-    setCharacterName(character.Name);
+    console.log("1");
+    fetchDataOf(character.Species, true);
+    console.log("2");
+    fetchDataOf(character.Spaceship);
+    console.log("3");
+    setCharacterData({
+      ...characterData,
+      name: character.Name,
+    });
+    console.log("4");
   };
 
   const characterCardsList = characterList.map((c, index) => (
@@ -50,9 +96,11 @@ function AvailableCharacters({ characterList }) {
         </div>
         <div className="p-2 h-[93vh] fixed left-44 right-2">
           <Details
-            characterName={characterName}
-            characterMovies={characterMovies}
-          />{" "}
+            characterName={characterData.name}
+            characterMovies={characterData.movies}
+            characterSpecies={characterData.species}
+            characterStarships={characterData.spaceships}
+          />
         </div>
       </div>
     </>

@@ -10,7 +10,7 @@ function App() {
   //below fetching CharacterData for characterList
   const handleInfiniteScroll = async () => {
     if (
-      window.innerHeight + document.documentElement.scrollTop + 1 >=
+      window.innerHeight + document.documentElement.scrollTop + 25 >=
       document.documentElement.scrollHeight
     ) {
       setPageNumber((prev) => (prev === 10 ? prev : prev + 1));
@@ -26,6 +26,7 @@ function App() {
     }
     const respData = await response.json();
     const final = await respData.results;
+    console.log("final", final);
     const list = [];
     final.forEach((char) => {
       list.push({
