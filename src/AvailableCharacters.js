@@ -1,31 +1,36 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import CharacterCard from "./CharacterCard";
 import Details from "./Details";
 
-const url = `url("https://images.unsplash.com/photo-1472457897821-70d3819a0e24?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80")`;
+const movieList = {};
 
 function AvailableCharacters({ characterList }) {
-  console.log("characterList2", characterList);
   const [characterMovies, setCharacterMovies] = useState([]);
-  const [isShowing, setShowing] = useState(false);
-  const [characterName, setCharacterName] = useState();
-  const movieList = [];
-  const fetchMovies = (movies) => {
-    let movieList = {};
+  const [characterName, setCharacterName] = useState("");
 
-    movies.map((m) => {
-      fetch(m)
-        .then((res) => res.json())
-        .then((d) => movieList.push(d.title));
+  const fetchMovies = (movies) => {
+    let list = [];
+    movies.forEach(async (m) => {
+      if (movieList[m]) {
+        list.push(movieList[m]);
+      } else {
+        console.log("fetching");
+        await fetch(m)
+          .then((res) => res.json())
+          .then((d) => {
+            movieList[m] = d.title;
+            list.push(d.title);
+          });
+      }
     });
-    setCharacterMovies(movieList);
+
+    setCharacterMovies(list);
   };
 
   const showDetails = (id) => {
-    let char = characterList[id];
-
-    setCharacterName(char.Name);
-    setShowing(true);
+    let character = characterList[id];
+    fetchMovies(character.Movie);
+    setCharacterName(character.Name);
   };
 
   const characterCardsList = characterList.map((c, index) => (
@@ -39,9 +44,7 @@ function AvailableCharacters({ characterList }) {
 
   return (
     <>
-      <div
-        className={`flex mt-12 justify-between py-4 px-2  w-screen h-screen `}
-      >
+      <div className="flex mt-12 justify-between py-4 px-2  w-screen h-screen">
         <div id="characterCardList " className="p-1">
           {characterCardsList}
         </div>

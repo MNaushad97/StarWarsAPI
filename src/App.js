@@ -27,7 +27,6 @@ function App() {
     const respData = await response.json();
     const final = await respData.results;
     const list = [];
-    console.log("people:", final);
     final.forEach((char) => {
       list.push({
         Name: char.name,
@@ -46,9 +45,6 @@ function App() {
       console.log(error);
     });
   }, [pageNumber]);
-  useEffect(() => {
-    console.log("characterList", characterList);
-  }, [characterList]);
 
   useEffect(() => {
     window.addEventListener("scroll", handleInfiniteScroll);
