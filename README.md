@@ -26,4 +26,4 @@ The filter section will allow the user to filter the list of characters accordin
 * The movie the character appeared in (i.e. show only characters that appeared in Episode IV: A New Hope)
 * The character's species (i.e. show only characters that are human)
 
-All filter settings will be treated using an AND relationship, i.e. if the user chooses to filter by movie and species, only characters that appear in the given movie AND are of the specified species should be displayed.
+All filter settings will be treated using an AND relationship, i.e. if the user chooses to filter by movie and species, only characters that appear in the given movie AND are of the specified species will be displayed.
