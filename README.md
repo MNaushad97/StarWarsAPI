@@ -14,8 +14,8 @@ When the user selects a character from the character list a brief summary of the
 For instance for the character "Han Solo", the detail view should display the following information:
 
 > **Name:** Han Solo  
+> **Movies:** Episode IV, Episode V, Episode VI, Episode VII 
 > **Species:** Human  
-> **Movies:** Episode IV, Episode V, Episode VI, Episode VII  
 > **Spaceships:** Millenium Falcon, Imperial shuttle  
 
 
