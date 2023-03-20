@@ -2,6 +2,8 @@ import { useState } from "react";
 import CharacterCard from "./CharacterCard";
 import Details from "./Details";
 
+const url = `url("https://images.unsplash.com/photo-1472457897821-70d3819a0e24?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1469&q=80")`;
+
 function AvailableCharacters({ characterList }) {
   console.log("characterList2", characterList);
   const [characterMovies, setCharacterMovies] = useState([]);
@@ -37,11 +39,13 @@ function AvailableCharacters({ characterList }) {
 
   return (
     <>
-      <div className="flex mt-12 justify-between p-4 w-screen h-screen ">
-        <div id="characterCardList " className=" p-4  ">
+      <div
+        className={`flex mt-12 justify-between py-4 px-2  w-screen h-screen `}
+      >
+        <div id="characterCardList " className="p-1">
           {characterCardsList}
         </div>
-        <div className="p-2  w-[86vw] h-[91vh] fixed left-52 ">
+        <div className="p-2 h-[93vh] fixed left-44 right-2">
           <Details
             characterName={characterName}
             characterMovies={characterMovies}

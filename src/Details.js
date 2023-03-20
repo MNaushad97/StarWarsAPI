@@ -3,11 +3,11 @@ function Details(props) {
   return (
     <>
       <div
-        className={`modal m-2 bg-[${url}] w-full h-full p-16 rounded  flex justify-center items-center align-middle opacity-80  `}
+        className={`modal bg-[${url}] w-full h-full rounded  flex justify-center items-center align-middle opacity-80  `}
       >
         {props.characterName && (
           <div
-            className="text-black bg-white rounded-lg p-8 w-64 h-fit shadow-[0px_5px_5px_-5px_rgba(0,0,0,0.7)] backdrop-blur-[2.5px]  bg-white/30 border transition-all duration-[250ms]  ease-out
+            className="text-black bg-white rounded-lg p-8 w-fit h-fit shadow-[0px_5px_5px_-5px_rgba(0,0,0,0.7)] backdrop-blur-[2.5px]  bg-white/30 border transition-all duration-[250ms]  ease-out
         hover:scale-[1.06] hover:shadow-[0px_8px_5px_-5px_rgba(0,0,0,0.7)] "
           >
             <h3 className="text-black font-bold pb-1 mt-0 ">Name:</h3>
