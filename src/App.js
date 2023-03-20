@@ -64,7 +64,7 @@ function App() {
   }
 
   return (
-    <div className="flex flex-col">
+    <div className="flex">
       <div className="App  ">
         <Filters />
 

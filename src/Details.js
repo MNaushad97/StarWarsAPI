@@ -3,7 +3,7 @@ function Details(props) {
   return (
     <>
       <div
-        className={`modal bg-[${url}]  mt-24 fixed left-[15%] right-[2%] rounded h-[93%] flex justify-center items-center align-middle opacity-80 `}
+        className={`modal m-2 bg-[${url}] w-full h-full p-16 rounded  flex justify-center items-center align-middle opacity-80  `}
       >
         {props.characterName && (
           <div

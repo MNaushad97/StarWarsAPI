@@ -6,7 +6,7 @@ import { Dropdown } from "semantic-ui-react";
 function Filters() {
   return (
     <>
-      <div className=" bg-pink-200 fixed  z-10 flex  w-full">
+      <div className=" bg-pink-200 fixed  z-10 flex  w-full shadow-lg">
         <form className="flex flex-row ml-24 py-0.5 w-full">
           <div className="flex p-2 my-2  w-full justify-start items-center">
             abc

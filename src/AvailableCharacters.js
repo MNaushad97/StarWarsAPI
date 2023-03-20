@@ -37,16 +37,31 @@ function AvailableCharacters({ characterList }) {
 
   return (
     <>
-      <div className="flex ">
-        <div className="mr-2 mt-24">{characterCardsList}</div>
-
-        <Details
-          characterName={characterName}
-          characterMovies={characterMovies}
-        />
+      <div className="flex mt-12 justify-between p-4 w-screen h-screen ">
+        <div id="characterCardList " className=" p-4  ">
+          {characterCardsList}
+        </div>
+        <div className="p-2  w-[86vw] h-[91vh] fixed left-52 ">
+          <Details
+            characterName={characterName}
+            characterMovies={characterMovies}
+          />{" "}
+        </div>
       </div>
     </>
   );
 }
 
 export default AvailableCharacters;
+
+/*
+<div className=" bg-yellow-100 scroll-auto p-8 ">
+          {characterCardsList}
+        </div>
+        <div className="flex fixed z-10 justify-center bg-blue-200 w-screen h-screen p-4">
+          <Details
+            characterName={characterName}
+            characterMovies={characterMovies}
+          />
+        </div>
+*/
