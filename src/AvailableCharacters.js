@@ -28,8 +28,7 @@ function AvailableCharacters({ characterList }) {
           });
       }
     });
-
-    setCharacterData({ ...characterData, ...(characterData.movies = list) });
+    setCharacterData((prev) => ({ ...prev, movies: list }));
   };
 
   const fetchDataOf = (data, isSpecies = false) => {
@@ -43,21 +42,15 @@ function AvailableCharacters({ characterList }) {
           .then((res) => res.json())
           .then((d) => {
             list.push(d.name);
-
             isSpecies ? (speciesList[m] = d.name) : (starships[m] = d.name);
           });
       }
     });
 
-    isSpecies
-      ? setCharacterData({
-          ...characterData,
-          ...(characterData.species = list),
-        })
-      : setCharacterData({
-          ...characterData,
-          ...(characterData.spaceships = list),
-        });
+    setCharacterData((prev) => ({
+      ...prev,
+      ...(isSpecies ? { species: list } : { spaceships: list }),
+    }));
   };
 
   useEffect(() => {
@@ -67,16 +60,9 @@ function AvailableCharacters({ characterList }) {
   const showDetails = (id) => {
     let character = characterList[id];
     fetchMovies(character.Movie);
-    console.log("1");
     fetchDataOf(character.Species, true);
-    console.log("2");
     fetchDataOf(character.Spaceship);
-    console.log("3");
-    setCharacterData({
-      ...characterData,
-      name: character.Name,
-    });
-    console.log("4");
+    setCharacterData((prev) => ({ ...prev, name: character.Name }));
   };
 
   const characterCardsList = characterList.map((c, index) => (

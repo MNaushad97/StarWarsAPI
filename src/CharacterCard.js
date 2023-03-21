@@ -1,6 +1,4 @@
-import { useEffect } from "react";
-
-function CharacterCard({ showDetails, id, name, setCharacterMovies }) {
+function CharacterCard({ showDetails, id, name }) {
   return (
     <>
       <div>
