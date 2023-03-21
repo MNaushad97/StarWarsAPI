@@ -14,42 +14,38 @@ function AvailableCharacters({ characterList }) {
     spaceships: [],
   });
 
-  const fetchMovies = (movies) => {
-    let list = [];
-    movies.forEach((m) => {
-      if (movieList[m]) {
-        list.push(movieList[m]);
-      } else {
-        fetch(m)
-          .then((res) => res.json())
-          .then((d) => {
-            list.push(d.title);
-            movieList[m] = d.title;
-          });
-      }
-    });
-    setCharacterData((prev) => ({ ...prev, movies: list }));
-  };
-
-  const fetchDataOf = (data, isSpecies = false) => {
+  const fetchDataOf = (data, isMovie = false, isSpecies = false) => {
     let list = [];
     data.forEach((m) => {
-      let check = isSpecies ? speciesList[m] : starships[m];
+      let check = isMovie
+        ? movieList[m]
+        : isSpecies
+        ? speciesList[m]
+        : starships[m];
       if (check) {
         list.push(check);
       } else {
         fetch(m)
           .then((res) => res.json())
           .then((d) => {
-            list.push(d.name);
-            isSpecies ? (speciesList[m] = d.name) : (starships[m] = d.name);
+            if (isMovie) {
+              list.push(d.title);
+              movieList[m] = d.title;
+            } else {
+              list.push(d.name);
+              isSpecies ? (speciesList[m] = d.name) : (starships[m] = d.name);
+            }
           });
       }
     });
 
     setCharacterData((prev) => ({
       ...prev,
-      ...(isSpecies ? { species: list } : { spaceships: list }),
+      ...(isMovie
+        ? { movies: list }
+        : isSpecies
+        ? { species: list }
+        : { spaceships: list }),
     }));
   };
 
@@ -59,8 +55,8 @@ function AvailableCharacters({ characterList }) {
 
   const showDetails = (id) => {
     let character = characterList[id];
-    fetchMovies(character.Movie);
-    fetchDataOf(character.Species, true);
+    fetchDataOf(character.Movie, true);
+    fetchDataOf(character.Species, false, true);
     fetchDataOf(character.Spaceship);
     setCharacterData((prev) => ({ ...prev, name: character.Name }));
   };
