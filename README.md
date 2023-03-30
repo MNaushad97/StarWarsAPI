@@ -28,3 +28,4 @@ The filter section will allow the user to filter the list of characters accordin
 
 All filter settings will be treated using an AND relationship, i.e. if the user chooses to filter by movie and species, only characters that appear in the given movie AND are of the specified species will be displayed.
 
+
