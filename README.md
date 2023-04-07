@@ -1,5 +1,4 @@
 # Work is in Progress...!!
-
 Have planned to build a small front-end application using ReactJS that displays a filterable list of characters from the movie franchise Star Wars. We will be querying data from an open API called [SWAPI (Star Wars API)](https://swapi.py4e.com/) 
 
 ## App Overview
